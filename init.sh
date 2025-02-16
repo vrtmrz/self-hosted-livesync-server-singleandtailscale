@@ -6,8 +6,8 @@ chmod +w /opt/couchdb/data/persistence.ini
 mkdir -p /opt/couchdb/data/tailscale
 # TailScale
 echo "Starting TailScale"
-/app/tailscaled -tun=userspace-networking --statedir=/opt/couchdb/data/tailscale &
+/app/tailscaled -tun=userspace-networking --statedir=/var/lib/tailscale &
 /app/tailscale up --authkey=${TS_AUTHKEY} ${TS_EXTRA_ARGS} --hostname=${TS_HOSTNAME}
-/app/tailscale funnel --bg http://localhost:5984
+/app/tailscale serve --bg http://localhost:5984
 
 echo "Starting CouchDB"
