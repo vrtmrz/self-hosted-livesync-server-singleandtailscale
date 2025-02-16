@@ -8,6 +8,6 @@ mkdir -p /opt/couchdb/data/tailscale
 echo "Starting TailScale"
 /app/tailscaled -tun=userspace-networking --statedir=/opt/couchdb/data/tailscale &
 /app/tailscale up --authkey=${TS_AUTHKEY} ${TS_EXTRA_ARGS} --hostname=${TS_HOSTNAME}
-/app/tailscale funnel --bg http://localhost:5984
+/app/tailscale serve --bg http://localhost:5984
 
 echo "Starting CouchDB"
